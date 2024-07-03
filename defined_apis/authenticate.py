@@ -9,6 +9,10 @@ from utils.parsing import parse_request
 
 
 
+@app.route('/',methods=[POST])
+def home():
+    return jsonify({"Message" : "this is the home page"})
+
 @app.route(REGISTER,methods=[POST])
 def register():
     
