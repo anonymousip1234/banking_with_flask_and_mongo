@@ -21,3 +21,6 @@ class ViewTransaction(BaseModel):
     deposit:Optional[int] = None
     remaining_balance:int
     
+
+class TransactionRequest(BaseModel):
+    account_no : str
