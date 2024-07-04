@@ -1,4 +1,5 @@
-from flask import request,jsonify
+#Importing all the necessary modules and functions
+from flask import request,jsonify,render_template
 from app import app
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_jwt_extended import create_access_token
@@ -9,17 +10,18 @@ from utils.parsing import parse_request
 
 
 
-@app.route('/',methods=[POST])
-def home():
-    return jsonify({"Message" : "this is the home page"})
+# @app.route('/',methods=[GET])
+# def home():
+#     return render_template('index.html')
 
+#Api for registering,or creating an user account
 @app.route(REGISTER,methods=[POST])
 def register():
     
+    #data validation for invalid requests
     parsed_data,errors = parse_request(request=request,schema=UserCreation)
     if errors:
         return errors,400
-        # return jsonify({"message" : "please provide all the necessary details"}),400
     username = parsed_data.username
     password = parsed_data.password
 
@@ -39,6 +41,7 @@ def register():
     return jsonify({"message" : "User created succesfully","user_id" : str(user_id)}),200
 
 
+#Api for logging in,also granted an access token
 @app.route(LOGIN,methods = [POST])
 def login():
 

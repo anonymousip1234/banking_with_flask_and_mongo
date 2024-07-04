@@ -11,7 +11,10 @@ from defined_databases.mongo import account_collection,transaction_history_colle
 from utils.parsing import parse_request,serialize_data_lists
 from utils.transactions import create_transaction_history
 
-
+#Create a transaction,deposit or withdrawal for a specific account
+#Errors like insufficient amount,deposit limit,and other bad requests logics are handled
+#Creates documents in two collections,one is accounts and other is transaction history
+#With each transaction,a record in transaction history gets created showing the amount of deposit or withdrawal and also the remaining balance.
 @app.route(CREATE_TRANSACTION,methods=[POST])
 @jwt_required()
 def create_transaction():
@@ -25,6 +28,8 @@ def create_transaction():
     existing_account = account_collection.find_one({"account_no": account_no})
     if not existing_account:
         return jsonify({"message" : "account does not exist!"}),400
+    
+    #Deposit logic,updating the accounts
     if parsed_data.deposit:
         amount = parsed_data.deposit
         balance= account_collection.find_one({"account_no" : account_no})["balance"]
@@ -38,6 +43,7 @@ def create_transaction():
         )
         
         remaining_balance = account["balance"]
+        #creating transaction history with deposited money
         transaction_history = create_transaction_history(
             username=username,
             account_no=account_no,
@@ -46,6 +52,7 @@ def create_transaction():
         )
             
         return jsonify({"message" : f"your amount has been deposited successfully,remaining balance is {remaining_balance}"})
+    #Withdraw logic,updating the accounts
     if parsed_data.withdraw:
         amount = parsed_data.withdraw
         balance = account_collection.find_one({"account_no" : account_no})["balance"]
@@ -59,6 +66,7 @@ def create_transaction():
             return_document=ReturnDocument.AFTER
         )
         remaining_balance = account["balance"]
+        #creating transaction history with the deposited money
         transaction_history = create_transaction_history(
             username=username,
             account_no=account_no,
@@ -69,14 +77,10 @@ def create_transaction():
         return jsonify({"message" : f"amount has been withdrawn successfully,remaining balance {remaining_balance}"})
 
 
-
+#Api for Viewing the transaction history for a specific account and its resepective user
 @app.route(VIEW_TRANSACTION,methods=[GET])
 @jwt_required()
 def view_transaction_history():
-    # username = get_jwt_identity()
-    # account_no = request.get_json()['account_no']
-    # user = user_collection.find_one({"username":username})
-    # account = account_collection.find_one({"account_no" : account_no})
     parsed_data,errors = parse_request(request,schema=CreateTransaction)
     if errors:
         return errors,400
