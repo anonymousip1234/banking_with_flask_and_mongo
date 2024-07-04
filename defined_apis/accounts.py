@@ -5,14 +5,16 @@ from app import app
 from config import *
 from defined_databases.mongo import user_collection,account_collection
 from defined_serializers.accounts import AccountCreation,ViewAccounts
-from utils.parsing import parse_request
+from utils.parsing import parse_request,serialize_data_lists
+
+
 
 @app.route(CREATE_ACCOUNT,methods=[POST])
 @jwt_required()
 def create_account():
     parsed_data,errors = parse_request(request=request,schema=AccountCreation)
     if errors:
-        return errors
+        return errors,400
     
     account_no=parsed_data.account_no
 
@@ -39,7 +41,7 @@ def create_account():
     
     account = account_collection.insert_one(account_dict)
 
-    return jsonify({"message" : f"your banking account is succesfully initiated with amount rs {balance}"}),200
+    return jsonify({"message" : f"your banking account is succesfully initiated with amount rs {balance}"}),201
     
 
 @app.route(VIEW_ACCOUNTS,methods=[GET])
@@ -50,11 +52,12 @@ def view_account_list():
     user = user_collection.find_one({"username" : username})
 
     accounts = account_collection.find({"user" : user})
-    try:
-        serialized_accounts_list = [ViewAccounts(**account).model_dump() for account in accounts]
-    except ValidationError as e:
-        return jsonify({"errors" : e}),400
+    data_list,status = serialize_data_lists(data_list=accounts,schema=ViewAccounts)
+    return data_list,status
 
-
-    return jsonify({"accounts" : serialized_accounts_list}),201
-
+@app.route(VIEW_ALL_ACCOUNTS,methods=[GET])
+@jwt_required()
+def view_all_accounts():
+    accounts = account_collection.find()
+    data_list,status = serialize_data_lists(data_list=accounts,schema=ViewAccounts)
+    return data_list,status

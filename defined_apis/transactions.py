@@ -8,7 +8,7 @@ from app import app
 from config import *
 from defined_serializers.transactions import CreateTransaction,ViewTransaction
 from defined_databases.mongo import account_collection,transaction_history_collection,user_collection
-from utils.parsing import parse_request
+from utils.parsing import parse_request,serialize_data_lists
 from utils.transactions import create_transaction_history
 
 
@@ -17,11 +17,14 @@ from utils.transactions import create_transaction_history
 def create_transaction():
     parsed_data,errors = parse_request(request,schema=CreateTransaction)
     if errors:
-        return errors
+        return errors,400
     if not parsed_data.withdraw and not parsed_data.deposit:
         return jsonify({"message" : "please select an option deposit or withdraw"})
     username=get_jwt_identity()
     account_no=parsed_data.account_no
+    existing_account = account_collection.find_one({"account_no": account_no})
+    if not existing_account:
+        return jsonify({"message" : "account does not exist!"}),400
     if parsed_data.deposit:
         amount = parsed_data.deposit
         balance= account_collection.find_one({"account_no" : account_no})["balance"]
@@ -66,24 +69,24 @@ def create_transaction():
         return jsonify({"message" : f"amount has been withdrawn successfully,remaining balance {remaining_balance}"})
 
 
+
 @app.route(VIEW_TRANSACTION,methods=[GET])
 @jwt_required()
 def view_transaction_history():
-    username = get_jwt_identity()
-    account_no = request.get_json()['account_no']
-    user = user_collection.find_one({"username":username})
+    # username = get_jwt_identity()
+    # account_no = request.get_json()['account_no']
+    # user = user_collection.find_one({"username":username})
+    # account = account_collection.find_one({"account_no" : account_no})
+    parsed_data,errors = parse_request(request,schema=CreateTransaction)
+    if errors:
+        return errors,400
+    account_no = parsed_data.account_no
     account = account_collection.find_one({"account_no" : account_no})
-
-    if not account_no or not user:
-        return jsonify({"message" : "Insufficient Data"}),400
-    
+    if not account:
+        return jsonify({"message" : "account does not exist!"}),400
+    user = user_collection.find_one({"username" : get_jwt_identity()})
     transaction_history_list_cursor = transaction_history_collection.find({"user" : user,"account" : account})
 
     transaction_history_list = json.loads(json_util.dumps(transaction_history_list_cursor))
-    try:
-        serialized_transaction_history = [ViewTransaction(**transaction_history).model_dump() for transaction_history in transaction_history_list]
-    except ValidationError as e:
-        return jsonify({"errors" : e}),400
-
-
-    return jsonify({"history" : serialized_transaction_history}),201
+    data_list,status = serialize_data_lists(data_list=transaction_history_list,schema=ViewTransaction)
+    return data_list,status

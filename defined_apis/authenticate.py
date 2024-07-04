@@ -18,7 +18,7 @@ def register():
     
     parsed_data,errors = parse_request(request=request,schema=UserCreation)
     if errors:
-        return errors
+        return errors,400
         # return jsonify({"message" : "please provide all the necessary details"}),400
     username = parsed_data.username
     password = parsed_data.password
@@ -54,10 +54,13 @@ def login():
     
     user = user_collection.find_one({"username" : username})
 
+    if not user:
+        return jsonify({"message" : "invalid username!"}),400
+
     password = check_password_hash(user["password"],password)
 
-    if not user or not password:
-        return jsonify({"message" : "invalid username or password"}),400
+    if not password:
+        return jsonify({"message" : "invalid password"}),400
     
     access_token = create_access_token(identity=username)
 
