@@ -1,0 +1,44 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "authentication",
+    "collectionId": "f12ffb0e-d327-465e-a605-fe82b4b062bb",
+    "dateExported": "2024-07-04T10:09:09.406Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "00bd5e06-31ea-42fa-a66b-e389455a9e07",
+            "colId": "f12ffb0e-d327-465e-a605-fe82b4b062bb",
+            "containerId": "",
+            "name": "register",
+            "url": "http://127.0.0.1:5000/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-05-07T03:14:17.315Z",
+            "modified": "2024-07-04T05:39:29.957Z",
+            "headers": []
+        },
+        {
+            "_id": "7f79e232-f10a-4f60-aa3c-daa3bd8cb463",
+            "colId": "f12ffb0e-d327-465e-a605-fe82b4b062bb",
+            "containerId": "",
+            "name": "login",
+            "url": "http://127.0.0.1:8000/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-05-07T03:15:20.083Z",
+            "modified": "2024-07-04T06:01:42.848Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\" : \"swapnonil\",\n  \"password\" : \"password\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxOTk4NTMyMCwianRpIjoiZTI2Y2Q5NWUtNTUyOS00YzhmLWE0ZjYtNTQyZTdjZmMzZmEyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN3YXAiLCJuYmYiOjE3MTk5ODUzMjAsImNzcmYiOiI0ZDQwNzdiYi01MmJlLTQ4ZjAtOTNiNy1jNjVjZjNkMmQyOTkiLCJleHAiOjE3MTk5ODYyMjB9.lUf4Lyy8Fuj67zMMAuZqkeWX03a64ard5APw3P2VK_E"
+            }
+        }
+    ],
+    "ref": "_g2Bo1dmgIwqEKHB8e4WKVkGOpz6HFEW984UqmPGD5yphpTMwKvlSJnTL6eOwSN5tGPkfhGXJP1hsS-Esuoe1w"
+}

@@ -1,0 +1,48 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "transactions",
+    "collectionId": "5c08c152-261e-4135-8f23-dc38285a0eb8",
+    "dateExported": "2024-07-04T10:09:36.605Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "44d6f987-b8e4-499a-acc3-b1ddde301e10",
+            "colId": "5c08c152-261e-4135-8f23-dc38285a0eb8",
+            "containerId": "",
+            "name": "create_transaction",
+            "url": "http://127.0.1:8000/create_transaction",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-07-03T07:01:56.448Z",
+            "modified": "2024-07-04T06:21:47.209Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"account_no\" : \"a1b2c3\",\n  \"deposit\" : 100 \n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDA3NDA3NiwianRpIjoiYjY0OWZjYjgtNzMxYi00ZDU1LTk1YzItNDFjZTYzYzkwYjY4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN3YXBub25pbCIsIm5iZiI6MTcyMDA3NDA3NiwiY3NyZiI6Ijk1ZDBmNmE0LTNhNWYtNDZkYy05YjFjLTIzNGM5NGUwZGFiNSIsImV4cCI6MTcyMDA3NDk3Nn0.57RLIP1I7kBwxp7QovzO9VD4PoiANRqkI6pj_LTsOOw"
+            }
+        },
+        {
+            "_id": "6733eb67-f5dd-4f39-a267-3dd64dc56d5b",
+            "colId": "5c08c152-261e-4135-8f23-dc38285a0eb8",
+            "containerId": "",
+            "name": "view_transaction_history",
+            "url": "http://127.0.1:8000/view_transaction",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-07-03T10:26:37.428Z",
+            "modified": "2024-07-04T06:38:52.675Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDA3NTAwNSwianRpIjoiZTBlMDBhNTItY2QyZS00ZmE0LTlmOTMtZTkzOTQwNDdiYzY2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN3YXBub25pbCIsIm5iZiI6MTcyMDA3NTAwNSwiY3NyZiI6IjQ0ZWVkMDVkLWY2MzEtNGIxMi05NGRjLWEzYzNjZTc1YWEwNSIsImV4cCI6MTcyMDA3NTkwNX0.FTJqZ1ZHUHCj8oIFrxVQPNNm-culqGJ7pm1Rbk5na5c"
+            }
+        }
+    ],
+    "ref": "oFpeM7XRTgI3lqkuSXp3c7JnPvuSuc1hZykVqdXrkId_3KzUs5dFsZHK26KsUO6LOp0G0RLTRyvgcuWLn_ZYaQ"
+}

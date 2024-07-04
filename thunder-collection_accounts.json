@@ -1,0 +1,64 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "accounts",
+    "collectionId": "e07c168e-4619-4fe2-8d44-978e232996ab",
+    "dateExported": "2024-07-04T10:09:28.940Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "af7626b3-fbcd-4d1a-ac56-518f01c5a24d",
+            "colId": "e07c168e-4619-4fe2-8d44-978e232996ab",
+            "containerId": "",
+            "name": "create_account",
+            "url": "http://127.0.1:8000/create_account",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-07-03T05:42:32.036Z",
+            "modified": "2024-07-04T06:14:53.240Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"bank_name\" : \"icici\",\n  \"account_no\" : \"a1b2c3\",\n  \"balance\" : 100\n  }",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDA3MzUxNiwianRpIjoiNmNlMDMwM2EtYjlmMS00MmFkLTkzNDQtOGI2MDk0OTMzMWYwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN3YXBub25pbCIsIm5iZiI6MTcyMDA3MzUxNiwiY3NyZiI6ImRjYmNjMTM2LTE2ODYtNGZiMS05ZDExLTdkMTQwOTdiZWM5NyIsImV4cCI6MTcyMDA3NDQxNn0.AIDzaNG1UFzKlvf05m_B2dljPJOm4duOspmF68Kag9w"
+            }
+        },
+        {
+            "_id": "2a273457-3ae3-498a-8283-b579346ff204",
+            "colId": "e07c168e-4619-4fe2-8d44-978e232996ab",
+            "containerId": "",
+            "name": "view_accounts_list",
+            "url": "http://127.0.1:8000/view_accounts",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-07-03T17:37:55.984Z",
+            "modified": "2024-07-03T17:39:18.011Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDAyODM0MSwianRpIjoiY2NmNTA3MzItY2NlNi00MzBlLWFlYTAtNWZhMjZlMTI1NWI5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN3YXAiLCJuYmYiOjE3MjAwMjgzNDEsImNzcmYiOiIzOTIwZWM3MS1jNmJhLTRlMWItYjFjZS02OTk0ZjNjZDgzYzMiLCJleHAiOjE3MjAwMjkyNDF9.UD---ZNLh5fMOQUTSELtnl_6_Zan8D2J4pmzHjf4BEI"
+            }
+        },
+        {
+            "_id": "c91b3e45-c62e-4401-b0a0-8e6a6c463865",
+            "colId": "e07c168e-4619-4fe2-8d44-978e232996ab",
+            "containerId": "",
+            "name": "view_all_accounts",
+            "url": "http://127.0.1:8000/view_all_accounts",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-07-04T06:00:34.626Z",
+            "modified": "2024-07-04T06:02:00.505Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDA3MjkwMiwianRpIjoiNTU1NmY5YjgtZDQ1OC00MzQ3LWIxMDEtOTU4NWQzMzY5ODVhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN3YXBub25pbCIsIm5iZiI6MTcyMDA3MjkwMiwiY3NyZiI6ImM0Y2QwY2IzLTgxN2YtNGIyMy1iZDZhLWUyOThjOTdlMTg2NCIsImV4cCI6MTcyMDA3MzgwMn0.p3qlKHujmSQ6VqJuThjUzFhuee0x6ZbXnDo1jW2-QkU"
+            }
+        }
+    ],
+    "ref": "hQZ1tZirD0SOkFXCwayjJND4yJuKgO7k2wNONwo1LWB7TV6UX_szv_VSTsVlPgTRKrx6yHv7A5JSl8KLvVaREA"
+}
