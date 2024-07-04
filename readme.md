@@ -9,6 +9,8 @@ Necessary modules,functions and settings are imported in it which are essential 
 
 All the apis lie in the defined_apis folder,which contains file such as authentication,transactions and accounts which are responsible to take care of their respective functionalities.
 
+All the endpoints are jwt authenticated and protected with access_tokens.
+
 All the schemas are inside defined_serializer folder,which are necessary to validate request and responses and other managements.
 
 Defined_databases contain mongo settings and the collections which are to be used.
